@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="helloWorld" class="by.itstep.HelloWorld"/>
+    <bean id="student" class="by.itstep.student.Student" scope="prototype"/>
+    <bean id="group" class="by.itstep.student.Group" >
+        <property name="listOfStudents">
+            <list>
+            </list>
+        </property>
+    </bean>
+
+</beans>

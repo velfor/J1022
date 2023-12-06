@@ -1,0 +1,5 @@
+INSERT INTO students (ID, NAME, AVG_MARK) VALUES (1, 'Иванов Иван', 9.5);
+INSERT INTO students (ID, NAME, AVG_MARK) VALUES (2, 'Петрова Мария', 8.4);
+INSERT INTO students (ID, NAME, AVG_MARK) VALUES (3, 'Сидоров Артем', 6.5);
+INSERT INTO students (ID, NAME, AVG_MARK) VALUES (4, 'Богомолов Дмитрий', 4.3);
+INSERT INTO students (ID, NAME, AVG_MARK) VALUES (5, 'Васечкин Василий', 3.1);
