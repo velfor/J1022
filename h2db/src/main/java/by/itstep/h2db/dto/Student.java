@@ -66,7 +66,8 @@ public class Student implements Serializable {
     @Override
     public String toString() {
         return "Student{" +
-                "fullName='" + fullName + '\'' +
+                "id " + id +
+                " fullName='" + fullName + '\'' +
                 //", group='" + group + '\'' +
                 ", avgMark=" + avgMark +
                 '}';
