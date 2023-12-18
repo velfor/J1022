@@ -1,25 +1,29 @@
 package by.itstep.hospital.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
 @Data
-@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "patients")
 public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(length = 50)
+    @Column(name="full_name", length = 50)
     private String fullName;
+    @Column(name="date_of_birth")
     private LocalDate dateOfBirth;
-    @Column(length = 100)
+    @Column(name="diagnosis", length = 100)
     private String diagnosis;
+    @Column(name="date_of_admission")
     private LocalDate dateOfAdmission;
+    @Column(name="date_of_discharge")
     private LocalDate dateOfDischarge;
+    @Column(name="department_id")
     private Long departmentId;
 }
