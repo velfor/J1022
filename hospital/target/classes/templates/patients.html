@@ -6,6 +6,6 @@
 </head>
 <body>
 <h1>Список пациентов</h1>
-
+<p th:each="patient : ${patients}" th:text="*{fullName}"></p>
 </body>
 </html>
