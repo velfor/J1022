@@ -7,7 +7,11 @@
 <body>
 <h1>Список пациентов</h1>
 <thead>
-<tr>Ф.И.О.</tr>
+<tr>
+    <th>
+        <a th:href="@{'/page/' + ${currentPage}+'?sortField=fullName&sortDir='+@{reverseSortDir}}">Ф.И.О.</a>
+    </th>
+</tr>
 </thead>
 <tbody>
 <tr th:each="patient : ${patients}">
@@ -17,17 +21,17 @@
 
 <div th:if="${totalPages > 1}">
     <span th:each="i:${#numbers.sequence(1, totalPages)}">
-        <a th:if="${currentPage != i}" th:href="@{'/page/'+${i}}" th:text="${i}"></a>
+        <a th:if="${currentPage != i}" th:href="@{'/page/'+${i}+'?sortField='+${sortField}+'&sortDir='+${sortDir}}" th:text="${i}"></a>
         <span th:unless="${currentPage != i}" th:text="${i}"></span>
     </span>
 
     <div>
-        <a th:if="${currentPage < totalPages}" th:href="@{'/page/'+${currentPage+1}}" th:text="Next"></a>
+        <a th:if="${currentPage < totalPages}" th:href="@{'/page/'+${currentPage+1}+'?sortField='+${sortField}+'&sortDir='+${sortDir}}" th:text="Next"></a>
         <span th:unless="${currentPage < totalPages}" th:text="Next"></span>
     </div>
 
     <div>
-        <a th:if="${currentPage < totalPages}" th:href="@{'/page/'+${totalPages}}" th:text="Last"></a>
+        <a th:if="${currentPage < totalPages}" th:href="@{'/page/'+${totalPages}+'?sortField='+${sortField}+'&sortDir='+${sortDir}}" th:text="Last"></a>
         <span th:unless="${currentPage < totalPages}" th:text="Last"></span>
     </div>
 </div>

@@ -40,13 +40,17 @@ public class PatientController {
             @RequestParam("sortField") String sortField,
             @RequestParam("sortDir") String sortDir,
             Model model){
-        var page = patientService.findPaginated(pageNumber, PAGE_SIZE);
+        var page = patientService.findPaginated(pageNumber, PAGE_SIZE, sortField, sortDir);
         var patientsList = page.getContent();
 
         model.addAttribute("patients", patientsList);
         model.addAttribute("currentPage", pageNumber);
         model.addAttribute("totalPages", page.getTotalPages());
         model.addAttribute("totalItems", page.getTotalElements());
+
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDir", sortDir);
+        model.addAttribute("reverseSortDir", sortDir.equals("asc")? "desc" : "asc");
 
         return "patients";
     }

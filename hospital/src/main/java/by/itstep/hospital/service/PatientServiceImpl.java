@@ -47,8 +47,8 @@ public class PatientServiceImpl implements PatientService{
         else{
             sort = Sort.by(sortField).descending();
         }
-        
-        Pageable pageable = PageRequest.of(pageNumber-1, pageSize);
+
+        Pageable pageable = PageRequest.of(pageNumber-1, pageSize, sort);
         return this.patientRepository.findAll(pageable);
     }
 }
