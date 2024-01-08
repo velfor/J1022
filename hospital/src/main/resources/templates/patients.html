@@ -6,6 +6,31 @@
 </head>
 <body>
 <h1>Список пациентов</h1>
-<p th:each="patient : ${patients}" th:text="${patient.fullName}"></p>
+<thead>
+<tr>Ф.И.О.</tr>
+</thead>
+<tbody>
+<tr th:each="patient : ${patients}">
+    <td th:text="${patient.fullName}"></td>
+</tr>
+</tbody>
+
+<div th:if="${totalPages > 1}">
+    <span th:each="i:${#numbers.sequence(1, totalPages)}">
+        <a th:if="${currentPage != i}" th:href="@{'/page/'+${i}}" th:text="${i}"></a>
+        <span th:unless="${currentPage != i}" th:text="${i}"></span>
+    </span>
+
+    <div>
+        <a th:if="${currentPage < totalPages}" th:href="@{'/page/'+${currentPage+1}}" th:text="Next"></a>
+        <span th:unless="${currentPage < totalPages}" th:text="Next"></span>
+    </div>
+
+    <div>
+        <a th:if="${currentPage < totalPages}" th:href="@{'/page/'+${totalPages}}" th:text="Last"></a>
+        <span th:unless="${currentPage < totalPages}" th:text="Last"></span>
+    </div>
+</div>
+
 </body>
 </html>

@@ -1,6 +1,8 @@
 package by.itstep.hospital.service;
 
 import by.itstep.hospital.model.Patient;
+import org.springframework.data.domain.Page;
+
 import java.util.Optional;
 
 public interface PatientService {
@@ -8,4 +10,5 @@ public interface PatientService {
     Optional<Patient> findById(Long id);
     boolean existsById(Long id);
     Iterable<Patient> findAll();
+    Page<Patient> findPaginated(int pageNumber, int pageSize, String sortField, String sortDir);
 }
