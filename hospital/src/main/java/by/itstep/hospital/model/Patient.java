@@ -14,16 +14,26 @@ public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(name="full_name", length = 50)
     private String fullName;
-    @Column(name="date_of_birth")
+
+    @Column(name="gender", length = 8)
+    private String gender;
+
+    @Column(name="date_of_birth", columnDefinition = "DATE")
     private LocalDate dateOfBirth;
+
     @Column(name="diagnosis", length = 100)
     private String diagnosis;
-    @Column(name="date_of_admission")
+
+    @Column(name="date_of_admission", columnDefinition = "DATE")
     private LocalDate dateOfAdmission;
-    @Column(name="date_of_discharge")
+
+    @Column(name="date_of_discharge", columnDefinition = "DATE")
     private LocalDate dateOfDischarge;
-    @Column(name="department_id")
-    private Long departmentId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "department_id")
+    private Department department;
 }

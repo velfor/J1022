@@ -14,41 +14,46 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-public class PatientServiceImpl implements PatientService{
+public class PatientServiceImpl implements PatientService {
 
-    PatientRepository patientRepository;
+    private final PatientRepository patientRepository;
 
     @Override
     public Patient save(Patient patient) {
-        return patientRepository.save(patient);
+        return this.patientRepository.save(patient);
     }
 
     @Override
     public Optional<Patient> findById(Long id) {
-        return patientRepository.findById(id);
+        return this.patientRepository.findById(id);
     }
 
     @Override
     public boolean existsById(Long id) {
-        return patientRepository.existsById(id);
+        return this.patientRepository.existsById(id);
     }
 
     @Override
     public Iterable<Patient> findAll() {
-        return patientRepository.findAll();
+        return this.patientRepository.findAll();
     }
 
     @Override
-    public Page<Patient> findPaginated(int pageNumber, int pageSize, String sortField, String sortDir) {
-        Sort sort = null;
-        if (sortDir.equalsIgnoreCase("asc")){
-            sort = Sort.by(sortField).ascending();
-        }
-        else{
-            sort = Sort.by(sortField).descending();
-        }
+    public Page<Patient> findPaginated(int pageNumber, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNumber - 1, pageSize);
+        return this.patientRepository.findAll(pageable);
+    }
 
-        Pageable pageable = PageRequest.of(pageNumber-1, pageSize, sort);
+    @Override
+    public Page<Patient> findPaginatedAndSorted(int pageNumber, int pageSize, String sortField, String sortDirection) {
+        /*Sort sort;
+        if (sortDirection.equalsIgnoreCase("asc"))
+            sort = Sort.by(sortField).ascending();
+        else
+            sort = Sort.by(sortField).descending();*/
+        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending():
+                Sort.by(sortField).descending();
+        Pageable pageable = PageRequest.of(pageNumber - 1, pageSize, sort);
         return this.patientRepository.findAll(pageable);
     }
 }
