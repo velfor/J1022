@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -58,6 +59,12 @@ public class PatientController {
         return "add_success";
     }
 
+    @GetMapping("/delete/{id}")
+    public String deletePatient(@PathVariable("id") Long id){
+        this.patientService.deleteById(id);
+        return "redirect:/patients";
+    }
+
     /*@GetMapping("/page/{pageNumber}")
     public String showPatientsListPaginated(@PathVariable(value = "pageNumber") int pageNumber,
             Model model)
@@ -94,4 +101,16 @@ public class PatientController {
         return "patients";
     }
 
+    @GetMapping("/showFormForUpdate/{id}")
+    public String showFormForUpdate(@PathVariable(value = "id") Long id, Model model){
+        Optional<Patient> patient = patientService.findById(id);
+        model.addAttribute("patient", patient.get());
+        return "update";
+    }
+
+    @PostMapping("/save")
+    public String savePatient(@ModelAttribute("patient") Patient patient){
+        patientService.save(patient);
+        return "redirect:/patients";
+    }
 }

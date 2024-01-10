@@ -1,13 +1,17 @@
 package by.itstep.hospital.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.FieldNameConstants;
 
 import java.time.LocalDate;
 
-@Data
 @NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@Builder
+@FieldNameConstants
 @Entity
 @Table(name = "patients")
 public class Patient {

@@ -41,8 +41,8 @@
                 <td th:text="${patient.dateOfDischarge}"></td>
                 <td th:text="${patient.department}"></td>
                 <td>
-                    <button class="btn btn-primary edit-btn">Редактировать</button>
-                    <button class="btn btn-danger delete-btn">Удалить</button>
+                    <a class="btn btn-primary" th:href="@{/showFormForUpdate/{id}(id=${patient.id})}">Редактировать</a>
+                    <a class="btn btn-danger" th:href="@{/delete/{id}(id=${patient.id})}">Удалить</a>
                 </td>
             </tr>
             </tbody>

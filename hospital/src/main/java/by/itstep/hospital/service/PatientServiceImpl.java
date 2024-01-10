@@ -56,4 +56,14 @@ public class PatientServiceImpl implements PatientService {
         Pageable pageable = PageRequest.of(pageNumber - 1, pageSize, sort);
         return this.patientRepository.findAll(pageable);
     }
+
+    @Override
+    public void deleteById(Long id){
+        this.patientRepository.deleteById(id);
+    }
+
+    @Override
+    public void delete(Patient patient) {
+        this.patientRepository.delete(patient);
+    }
 }

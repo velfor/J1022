@@ -17,4 +17,8 @@ public interface PatientService {
     Page<Patient> findPaginated(int pageNumber, int pageSize);
 
     Page<Patient> findPaginatedAndSorted(int pageNumber, int pageSize, String sortField, String sortDirection);
+
+    void deleteById(Long id);
+
+    void delete(Patient patient);
 }
