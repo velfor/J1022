@@ -46,15 +46,10 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public Page<Patient> findPaginatedAndSorted(int pageNumber, int pageSize, String sortField, String sortDirection) {
-        /*Sort sort;
-        if (sortDirection.equalsIgnoreCase("asc"))
-            sort = Sort.by(sortField).ascending();
-        else
-            sort = Sort.by(sortField).descending();*/
-        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending():
+       Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending():
                 Sort.by(sortField).descending();
-        Pageable pageable = PageRequest.of(pageNumber - 1, pageSize, sort);
-        return this.patientRepository.findAll(pageable);
+       Pageable pageable = PageRequest.of(pageNumber - 1, pageSize, sort);
+       return this.patientRepository.findAll(pageable);
     }
 
     @Override

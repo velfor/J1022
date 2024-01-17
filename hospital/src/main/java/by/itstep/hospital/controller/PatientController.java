@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.Arrays;
 import java.util.List;
@@ -54,9 +55,9 @@ public class PatientController {
     }
 
     @PostMapping("add_patient")
-    public String addPAtient(Patient patient) {
+    public RedirectView addPAtient(Patient patient) {
         patientService.save(patient);
-        return "add_success";
+        return new RedirectView("add_success", true);
     }
 
     @GetMapping("/delete/{id}")

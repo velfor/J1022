@@ -15,11 +15,11 @@
     <input type="text" th:field="*{fullName}"><br/>
 
     <label>Дата рождения (гггг-мм-дд): </label>
-    <input type="date" th:field="*{dateOfBirth}"><br/>
+    <input type="date" th:field="*{{dateOfBirth}}" th:value="*{{dateOfBirth}}"><br/>
 
     <label>Пол:</label>
-    <input type="radio" th:field="*{gender}" value="Мужской" />Мужской
-    <input type="radio" th:field="*{gender}" value="Женский" />Женский<br/>
+    <input type="radio" th:field="*{gender}" th:value="мужской" th:checked="${patient.gender == 'мужской'}"/>Мужской
+    <input type="radio" th:field="*{gender}" th:value="женский" th:checked="${patient.gender == 'женский'}"/>Женский<br/>
 
     <label>Диагноз:</label>
     <select th:field="*{diagnosis}">

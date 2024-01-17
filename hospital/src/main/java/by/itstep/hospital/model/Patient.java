@@ -3,6 +3,7 @@ package by.itstep.hospital.model;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldNameConstants;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
@@ -26,6 +27,7 @@ public class Patient {
     private String gender;
 
     @Column(name="date_of_birth", columnDefinition = "DATE")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateOfBirth;
 
     @Column(name="diagnosis", length = 100)
